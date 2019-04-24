@@ -1,0 +1,67 @@
+﻿@using System.Timers
+
+<ul 
+    id="slide-out" 
+    class="sidenav sidenav-fixed @SidebarCollapseCssClass " 
+    style="margin-top: 56px; margin-left: -16px; z-index: -1;">
+
+    <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Dashboard</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">add_box</i>New Project</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">dvr</i>Add Data</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">folder</i>Open Project</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">save</i>Save Project As ...</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_bottom</i>Export Project</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_top</i>Import Project</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Gadgets</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">poll</i>Analysis</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">bar_chart</i>Visualization</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">ballot</i>Reporting</a></li>
+</ul>
+
+<nav>
+    <div class="nav-wrapper white">
+
+        <button 
+            type="button"
+            onclick=@ToggleSidebar
+            class="btn-flat btn-floating btn-small waves-effect waves-light white" 
+            style="margin-top: -12px; margin-left: 12px;">
+            <i class="material-icons black-text">menu</i>
+        </button>
+
+        <a href="#" class="brand-logo">
+            <img src="images/epiinfo.ico" height="32" width="32" alt="Epi Info Icon" style="margin-left: 5px; margin-top: 16px; margin-right: 8px; float: left;" />
+            Epi Info Dashboard
+        </a>
+    </div>
+</nav>
+
+@functions {
+    bool isShowingSidebar = true;
+
+    public string SidebarCollapseCssClass = "";
+
+    async void ToggleSidebar() 
+    {
+        isShowingSidebar = !isShowingSidebar;
+
+        if (isShowingSidebar)
+        {
+            SidebarCollapseCssClass = "sidebar-show-slide";
+        }
+        else
+        {
+            SidebarCollapseCssClass = "sidebar-collapse-slide";
+        }
+
+        base.StateHasChanged();
+        
+        //Countdown.Start();
+        // Console.WriteLine(SidebarCollapseCssClass);
+    }
+
+    
+}
