@@ -1,0 +1,78 @@
+﻿[
+  {
+    "prompt": "Recent Data Sources",
+    "controlType": "Drop Down",
+    "valueType": "String",
+    "defaultVaue": ""
+  },
+  {
+    "prompt": "Browse",
+    "controlType": "File Picker",
+    "valueType": "String",
+    "defaultVaue": ""
+  },
+  {
+    "prompt": "Data Type",
+    "controlType": "Drop Down",
+    "valueType": "String",
+    "defaultVaue": "",
+    "candidates": [
+      "Epi Info 7 Project",
+      "Microsoft Access 2002-2003 (.mdb)",
+      "Microsoft Access 2007 (.accdb)",
+      "Microsoft Excel 97-2003 Workbook (.xls)",
+      "Microsoft Excel 2007 Workbook (.xlsx)",
+      "Microsoft SQL Server Database",
+      "CSV File",
+      "MySQL Database",
+      "MongoDB (Beta)",
+      "PostgreSQL Database"
+    ]
+  },
+  {
+    "prompt": "Data Source",
+    "controlType": "textbox",
+    "valueType": "String",
+    "defaultVaue": "",
+    "readonly": true
+  },
+  {
+    "prompt": "Data Source Explorer",
+    "controlType": "listbox",
+    "valueType": "String",
+    "defaultVaue": ""
+  },
+  {
+    "groupAs": "row",
+    "items": [
+      {
+        "prompt": "OK",
+        "controlType": "button",
+        "valueType": "bool",
+        "defaultVaue": "",
+        "enabled": false
+      },
+      {
+        "prompt": "Advanced",
+        "controlType": "button",
+        "valueType": "bool",
+        "defaultVaue": "",
+        "enabled": false
+      },
+      {
+        "prompt": "Cancel",
+        "controlType": "button",
+        "valueType": "bool",
+        "defaultVaue": "",
+        "enabled": true
+      },
+      {
+        "prompt": "Help",
+        "controlType": "button",
+        "valueType": "bool",
+        "defaultVaue": "",
+        "enabled": true
+      }
+    ]
+  }
+]
