@@ -1,0 +1,59 @@
+@page "/data"
+
+@using System
+@using System.Collections.Generic
+@using System.Threading.Tasks
+@using System.Linq
+@using Newtonsoft.Json
+
+@inject HttpClient Http
+
+<div class="content">
+
+<h1>Data View</h1>
+
+@if (data == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            @foreach (var element in data.Take(1))
+            {
+                <tr>
+                    @foreach (var kvp in element)
+                    {
+                        <th>@kvp.Key</th>
+                    }
+                </tr>
+            }
+        </thead>
+        <tbody>
+            @foreach (var element in data)
+            {
+                <tr>
+                    @foreach (var kvp in element)
+                    {
+                        <td>@kvp.Value</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+</div>
+
+@functions {
+    List<Dictionary<string, string>> data;
+    string dataStr;
+
+    protected override async Task OnInitAsync()
+    {
+        dataStr = await Http.GetStringAsync("sample-data/weather.json");
+        data = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(dataStr);
+        base.StateHasChanged();
+    }
+}

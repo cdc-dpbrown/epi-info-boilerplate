@@ -8,6 +8,11 @@ app {
     flex-direction: column;
 }
 
+.content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .brand-logo {
     margin-left: 1rem;
     margin-top: -4px;
@@ -38,6 +43,26 @@ h1 {
 nav {
     height: 56px;
 }
+
+table {
+    border-color: rgb(211,211,211);
+}
+    table > tbody > tr > td {
+        vertical-align: middle;
+        padding: 3px;
+        font-size: 12px;
+        color: rgb(85,85,85);
+        font-weight: 600;
+        border-color: rgb(233,233,233);
+    }
+    table > thead > tr > th {
+        font-weight: 700;
+        padding: 3px;
+        font-size: 12px;
+        background-color: rgb(221,224,226);
+        color: rgb(85,85,85);
+        border-color: rgb(211,211,211);
+    }
 
 .sidebar-collapse-slide:not(:focus) {
     left: 0px; 
