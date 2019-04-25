@@ -1,6 +1,8 @@
 ﻿@using System.Collections.Generic
 @using Cdc.EpiInfo.Models
 
+@inject HttpClient Http
+
 <ul 
     id="slide-out" 
     class="sidenav sidenav-fixed @SidebarCollapseCssClass " 
@@ -46,6 +48,11 @@
 
     public string SidebarCollapseCssClass = "";
 
+    protected override async Task OnInitAsync()
+    {
+        MenuItems = await Http.GetJsonAsync<MenuItem[]>("sample-data/navmenu.json");
+    }
+
     async void ToggleSidebar() 
     {
         isShowingSidebar = !isShowingSidebar;
@@ -60,84 +67,8 @@
         }
 
         base.StateHasChanged();
-        
-        //Countdown.Start();
-        // Console.WriteLine(SidebarCollapseCssClass);
     }
 
-    public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>() 
-    {
-        new MenuItem() 
-        {
-            Name = "Dashboard",
-            Icon = "home",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "New Project",
-            Icon = "add_box",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Add Data",
-            Icon = "dvr",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Open Project",
-            Icon = "folder",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Save Project As ...",
-            Icon = "save",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Export Project",
-            Icon = "vertical_align_bottom",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Import Project",
-            Icon = "vertical_align_top",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Type = MenuItemType.Divider
-        },
-
-        new MenuItem() 
-        {
-            Name = "Gadgets",
-            Type = MenuItemType.Header
-        },
-
-        new MenuItem() 
-        {
-            Name = "Analysis",
-            Icon = "poll",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Visualization",
-            Icon = "bar_chart",
-            Type = MenuItemType.Link
-        },
-        new MenuItem() 
-        {
-            Name = "Reporting",
-            Icon = "ballot",
-            Type = MenuItemType.Link
-        },
-    };
+    public MenuItem[] MenuItems { get; set; } = {};
     
 }

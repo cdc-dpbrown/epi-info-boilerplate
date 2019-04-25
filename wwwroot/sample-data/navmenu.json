@@ -1,0 +1,59 @@
+[
+    {
+        "name": "Dashboard",
+        "icon": "home",
+        "type": 1
+    },
+    {
+        "name": "New Project",
+        "icon": "add_box",
+        "type": 1
+    },
+    {
+        "name": "Add Data",
+        "icon": "dvr",
+        "type": 1
+    },
+    {
+        "name": "Open Project",
+        "icon": "folder",
+        "type": 1
+    },
+    {
+        "name": "Save Project As ...",
+        "icon": "save",
+        "type": 1
+    },
+    {
+        "name": "Export Project",
+        "icon": "vertical_align_bottom",
+        "type": 1
+    },
+    {
+        "name": "Import Project",
+        "icon": "vertical_align_top",
+        "type": 1
+    },
+    {
+        "type": 2
+    },
+    {
+        "name": "Gadgets",
+        "type": 0
+    },
+    {
+        "name": "Analysis",
+        "icon": "poll",
+        "type": 1
+    },
+    {
+        "name": "Visualization",
+        "icon": "bar_chart",
+        "type": 1
+    },
+    {
+        "name": "Reporting",
+        "icon": "ballot",
+        "type": 1
+    }
+]
