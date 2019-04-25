@@ -1,4 +1,4 @@
-# Epi Info Boilderplate
+# Epi Info Boilerplate
 
 This is a repository for an experimental web app for analysis, visualization, and reporting, written in C# and WebAssembly.
 
