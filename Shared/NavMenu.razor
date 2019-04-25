@@ -1,24 +1,26 @@
-﻿@using System.Timers
+﻿@using System.Collections.Generic
+@using Cdc.EpiInfo.Models
 
 <ul 
     id="slide-out" 
     class="sidenav sidenav-fixed @SidebarCollapseCssClass " 
     style="margin-top: 56px; margin-left: -16px; z-index: -1;">
 
-    <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Dashboard</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">add_box</i>New Project</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">dvr</i>Add Data</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">folder</i>Open Project</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">save</i>Save Project As ...</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_bottom</i>Export Project</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_top</i>Import Project</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Gadgets</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">poll</i>Analysis</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">bar_chart</i>Visualization</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">ballot</i>Reporting</a></li>
+    @foreach (var item in MenuItems)
+    {
+        @if (item.Type == MenuItemType.Link) 
+        {
+            <li><a class="waves-effect" href="#!"><i class="material-icons">@item.Icon</i>@item.Name</a></li>
+        }
+        else if (item.Type == MenuItemType.Divider)
+        {
+            <li><div class="divider"></div></li>
+        }
+        else if (item.Type == MenuItemType.Header)
+        {
+            <li><a class="subheader">@item.Name</a></li>
+        }
+    }
 </ul>
 
 <nav>
@@ -63,5 +65,79 @@
         // Console.WriteLine(SidebarCollapseCssClass);
     }
 
+    public List<MenuItem> MenuItems { get; set; } = new List<MenuItem>() 
+    {
+        new MenuItem() 
+        {
+            Name = "Dashboard",
+            Icon = "home",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "New Project",
+            Icon = "add_box",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Add Data",
+            Icon = "dvr",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Open Project",
+            Icon = "folder",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Save Project As ...",
+            Icon = "save",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Export Project",
+            Icon = "vertical_align_bottom",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Import Project",
+            Icon = "vertical_align_top",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Type = MenuItemType.Divider
+        },
+
+        new MenuItem() 
+        {
+            Name = "Gadgets",
+            Type = MenuItemType.Header
+        },
+
+        new MenuItem() 
+        {
+            Name = "Analysis",
+            Icon = "poll",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Visualization",
+            Icon = "bar_chart",
+            Type = MenuItemType.Link
+        },
+        new MenuItem() 
+        {
+            Name = "Reporting",
+            Icon = "ballot",
+            Type = MenuItemType.Link
+        },
+    };
     
 }

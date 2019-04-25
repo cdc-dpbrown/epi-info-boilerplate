@@ -29,6 +29,9 @@ _ReSharper.*
 *.orig
 .DS_Store
 
+# test files
+tests/security/resources/
+
 # Sonarqube
 .sonarqube
 
@@ -51,6 +54,12 @@ project.fragment.lock.json
 artifacts/
 **/Properties/launchSettings.json
 
+# Visual Studio Code (VSCode) text editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 *_i.c
 *_p.c
@@ -259,20 +268,3 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-
-### Linux
-
-# KDE directory preferences
-.directory
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
