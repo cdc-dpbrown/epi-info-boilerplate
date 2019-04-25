@@ -36,7 +36,7 @@ else
                 <tr>
                     @foreach (var kvp in element)
                     {
-                        <td>@kvp.Value</td>
+                        <td>@kvp.Value?.ToString()</td>
                     }
                 </tr>
             }
@@ -47,13 +47,16 @@ else
 </div>
 
 @functions {
-    List<Dictionary<string, string>> data;
+    List<Dictionary<string, object>> data;
+    List<string> headers;
+
     string dataStr;
 
     protected override async Task OnInitAsync()
     {
         dataStr = await Http.GetStringAsync("sample-data/weather.json");
-        data = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(dataStr);
+        // dataStr = await Http.GetStringAsync("http://.../api/1.0/bookstore/books");
+        data = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(dataStr);
         base.StateHasChanged();
     }
 }
