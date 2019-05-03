@@ -1,24 +1,28 @@
-﻿
+﻿﻿@using System.Collections.Generic
+@using Cdc.EpiInfo.Models
+
+@inject HttpClient Http
+
 <ul 
     id="slide-out" 
     class="sidenav sidenav-fixed @SidebarCollapseCssClass " 
     style="margin-top: 56px; margin-left: -16px; z-index: -1;">
 
-    <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Dashboard</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">add_box</i>New Project</a></li>
-    <li><a class="waves-effect" href="settings"><i class="material-icons">folder</i>Settings</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">dvr</i>Add Data</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">folder</i>Open Project</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">save</i>Save Project As ...</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_bottom</i>Export Project</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">vertical_align_top</i>Import Project</a></li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="subheader">Gadgets</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">poll</i>Analysis</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">bar_chart</i>Visualization</a></li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">ballot</i>Reporting</a></li>
+    @foreach (var item in MenuItems)
+    {
+        @if (item.Type == MenuItemType.Link) 
+        {
+            <li><a class="waves-effect" href="@item.Href"><i class="material-icons">@item.Icon</i>@item.Name</a></li>
+        }
+        else if (item.Type == MenuItemType.Divider)
+        {
+            <li><div class="divider"></div></li>
+        }
+        else if (item.Type == MenuItemType.Header)
+        {
+            <li><a class="subheader">@item.Name</a></li>
+        }
+    }
 </ul>
 
 <nav>
@@ -44,6 +48,11 @@
 
     public string SidebarCollapseCssClass = "";
 
+    protected override async Task OnInitAsync()
+    {
+        MenuItems = await Http.GetJsonAsync<MenuItem[]>("sample-data/navmenu.json");
+    }
+
     async void ToggleSidebar() 
     {
         isShowingSidebar = !isShowingSidebar;
@@ -58,10 +67,8 @@
         }
 
         base.StateHasChanged();
-        
-        //Countdown.Start();
-        // Console.WriteLine(SidebarCollapseCssClass);
     }
 
+    public MenuItem[] MenuItems { get; set; } = {};
     
 }
