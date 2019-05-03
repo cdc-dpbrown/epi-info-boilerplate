@@ -1,0 +1,126 @@
+﻿@page "/settings"
+@inject HttpClient Http
+@using System;
+@using System.IO;
+@using System.Runtime.Serialization.Json
+@using System.Runtime.Serialization
+@using System.Runtime
+
+@if (settings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var setting in settings)
+            {
+                <tr>
+                    <td>@setting.Prompt</td>
+                    <td>@setting.Description</td>
+                    <td>@setting.ReadOnly</td>
+                    <td>@setting.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@functions {
+    ItemSchema[] settings;
+
+    protected override async Task OnInitAsync()
+    {
+        settings = await Http.GetJsonAsync<ItemSchema[]>("sample-data/addData.json");
+
+        Append();    
+    }
+
+    protected void Append()
+    {
+        ItemSchema item = new ItemSchema()        {
+            Prompt = "PROMPT",
+            Description = "DESCRIPTION",
+            ReadOnly = true,
+            Type = InputType.button.ToString(),
+        };
+
+        Console.WriteLine("SidebarCollapseCssClass");
+        Console.WriteLine(item.ToString());
+        Console.WriteLine(item.ReadOnly);
+        Console.WriteLine(item.Type);
+        
+        //try
+        {
+            DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(ItemSchema));
+            Console.WriteLine(js.ToString());
+
+            MemoryStream ms = new MemoryStream();
+            Console.WriteLine(ms.ToString());
+
+return;
+
+            js.WriteObject(ms, item);
+            Console.WriteLine(ms.ToString());
+
+            ms.Position = 0;
+            StreamReader sr = new StreamReader(ms);
+            Console.WriteLine(sr.ReadToEnd());
+            sr.Close();
+            ms.Close();
+        }
+        //catch(Exception ex)
+        {
+            //Console.Write(ex.Message);
+        }
+    }
+
+    [DataContract]
+    public class ItemSchema
+    {
+        [DataMember]
+        public string Prompt;
+        [DataMember]
+        public string Description;
+        [DataMember]
+        public bool ReadOnly;
+        [DataMember]
+        public string Type;
+    }
+
+    protected enum InputType {
+        button,
+        checkbox,
+        color,
+        date,
+        datetime_local, // datetime-local
+        email,
+        file,
+        hidden,
+        image,
+        month,
+        number,
+        password,
+        radio,
+        range,
+        reset,
+        search,
+        submit,
+        tel,
+        text,
+        time,
+        url,
+        week
+    };
+
+
+}
